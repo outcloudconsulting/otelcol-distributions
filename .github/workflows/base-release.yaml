@@ -1,11 +1,12 @@
 name: Reusable release workflow
 
 on:
-  workflow_call:
-    inputs:
-      distribution:
-        required: true
-        type: string
+  workflow_dispatch:
+  #  workflow_call:
+  #    inputs:
+  #      distribution:
+  #        required: true
+  #        type: string
 
 jobs:
   release:
