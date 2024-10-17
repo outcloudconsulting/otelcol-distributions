@@ -1,13 +1,15 @@
 name: Release githubactions
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    workflows: [Continuous Integration]
+    types:
+      - complete
 
 jobs:
   release:
     name: Release githubactions
-    uses: ./.github/workflows/base-release.yaml
+    uses: ./.github/workflows/base-outcloud-release.yaml
     with:
       distribution: githubactions
     secrets: inherit
