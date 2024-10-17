@@ -1,0 +1,16 @@
+name: Continuous Integration - outcloud-gha
+
+on:
+  workflow_run:
+    workflows: [Continuous Integration]
+    types:
+      - completed
+
+jobs:
+  release:
+    name: Continuous Integration - outcloud-gha - GoReleaser
+    uses: ./.github/workflows/base-outcloud-release.yaml
+    with:
+      distribution: outcloud
+    secrets: inherit
+

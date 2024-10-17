@@ -1,0 +1,26 @@
+extensions:
+  health_check:
+
+receivers:
+  githubactions:
+  otlp:
+    protocols:
+      grpc:
+
+
+processors:
+
+exporters:
+  otlp:
+    endpoint: example:4317 # this will fail to connect, but it shouldn't break the process
+
+service:
+  extensions: [health_check]
+  pipelines:
+    traces:
+      receivers:
+        - githubactions
+        - otlp
+      processors: []
+      exporters:
+        - otlp

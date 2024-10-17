@@ -1,0 +1,68 @@
+project_name: outcloud-gha
+builds:
+    - id: outcloud-gha
+      goos:
+        - linux
+      goarch:
+        - amd64
+        - arm64
+      dir: _build
+      binary: outcloud-gha
+      ldflags:
+        - -s
+        - -w
+      flags:
+        - -trimpath
+      env:
+        - CGO_ENABLED=0
+archives:
+    - format: binary
+dockers:
+    - goos: linux
+      goarch: amd64
+      dockerfile: Dockerfile
+
+      image_templates:
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/research-dev:{{ .Version }}-amd64
+      extra_files:
+        - otelcol.yaml
+      build_flag_templates:
+        - --pull
+        - --platform=linux/amd64
+        - --label=org.opencontainers.image.created={{.Date}}
+        - --label=org.opencontainers.image.name={{.ProjectName}}
+        - --label=org.opencontainers.image.revision={{.FullCommit}}
+        - --label=org.opencontainers.image.version={{.Version}}
+        - --label=org.opencontainers.image.source={{.GitURL}}
+      use: buildx
+    - goos: linux
+      goarch: arm64
+      dockerfile: Dockerfile
+      image_templates:
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/research-dev:{{ .Version }}-arm64
+      extra_files:
+        - otelcol.yaml
+      build_flag_templates:
+        - --pull
+        - --platform=linux/arm64
+        - --label=org.opencontainers.image.created={{.Date}}
+        - --label=org.opencontainers.image.name={{.ProjectName}}
+        - --label=org.opencontainers.image.revision={{.FullCommit}}
+        - --label=org.opencontainers.image.version={{.Version}}
+        - --label=org.opencontainers.image.source={{.GitURL}}
+      use: buildx
+docker_manifests:
+    - name_template: 108782066926.dkr.ecr.eu-central-1.amazonaws.com/research-dev:{{ .Version }}
+      image_templates:
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/research-dev:{{ .Version }}-amd64
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/research-dev:{{ .Version }}-arm64
+#sboms:
+#    - id: archive
+#      artifacts: archive
+#blobs:
+#    - provider: s3
+#    - region: eu-central-1
+#    - bucket: gha-artifacts
+#    - id: archive
+#    - directory:  "otecol/"
+#    - include_meta: true

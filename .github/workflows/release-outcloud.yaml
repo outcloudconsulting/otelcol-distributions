@@ -1,0 +1,15 @@
+name: Release githubactions
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Release githubactions
+    uses: ./.github/workflows/base-outcloud-release.yaml
+    with:
+      distribution: outcloud
+    secrets: inherit
+    permissions: write-all
+
