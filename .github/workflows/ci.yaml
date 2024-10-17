@@ -1,6 +1,6 @@
 name: Continuous Integration
 
-n:
+on:
   workflow_dispatch:
   #  push:
   #    branches: [main]
