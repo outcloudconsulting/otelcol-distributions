@@ -6,7 +6,7 @@ ARG USER_UID=10001
 
 USER ${USER_UID}
 
-COPY _build/githubactions /githubactions
+COPY githubactions /githubactions
 COPY otelcol.yaml /etc/githubactions/config.yaml
 
 EXPOSE 4317
