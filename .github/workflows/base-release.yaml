@@ -47,6 +47,6 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
-          version: 0.102.0
+          version: latest
           workdir: distributions/${{ inputs.distribution }}
           args: release --clean --timeout 2h
