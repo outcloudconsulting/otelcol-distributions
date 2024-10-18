@@ -62,6 +62,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-386
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-386
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -78,6 +79,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-amd64
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-amd64
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -94,6 +96,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-arm64
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-arm64
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -110,6 +113,7 @@ dockers:
       dockerfile: Dockerfile
       image_templates:
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-ppc64le
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-ppc64le
       extra_files:
         - otelcol.yaml
       build_flag_templates:
@@ -125,9 +129,13 @@ docker_manifests:
     - name_template: ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}
       image_templates:
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-386
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-386
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-amd64
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-amd64
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-arm64
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-arm64
         - ghcr.io/outcloudconsulting/otelcol-distributions/githubactions:{{ .Version }}-ppc64le
+        - 108782066926.dkr.ecr.eu-central-1.amazonaws.com/githubactions:{{ .Version }}-ppc64le
 sboms:
     - id: archive
       artifacts: archive
