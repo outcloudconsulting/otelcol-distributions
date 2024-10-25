@@ -37,12 +37,15 @@ jobs:
       - name: Generate distribution sources
         run: make generate-sources
 
-      - name: Login to AWS ECR
-        uses: docker/login-action@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          registry: 108782066926.dkr.ecr.eu-central-1.amazonaws.com
-          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::108782066926:role/gh-actions
+          aws-region: eu-central-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Login to GitHub Package Registry
         uses: docker/login-action@v3
